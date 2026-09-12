@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #f4f3ef;
+  --color-mute: #989690;
+  --color-dim: #6e6d68;
+  --color-bg: #0b0b0c;
+  --color-bg-1: #121214;
+  --color-bg-2: #18181a;
+  --color-line: #26262a;
+  --color-line-2: #39393e;
+  --color-gold: #c2a25b;
+  --color-gold-2: #dcc084;
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-bg);
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-line-2);
+  }
+}
+
+@layer components {
+  .label {
+    @apply text-[11px] font-normal tracking-[0.28em] text-mute uppercase;
+  }
+  .label-light {
+    @apply text-[11px] font-normal tracking-[0.28em] text-ink uppercase;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 px-7 py-3 text-[12px] font-medium tracking-[0.2em] text-center uppercase transition-colors cursor-pointer select-none;
+  }
+  .btn-gold {
+    @apply bg-gold text-bg hover:bg-gold-2;
+  }
+  .btn-line {
+    @apply border border-line-2 text-ink hover:border-gold hover:text-gold;
+  }
+  .btn-ghost {
+    @apply px-0 text-mute hover:text-gold;
+  }
+
+  .field {
+    @apply w-full border border-line bg-bg-1 px-4 py-3 text-sm font-light text-ink transition-colors outline-none placeholder:text-dim focus:border-gold;
+  }
+  .field-line {
+    @apply w-full border-0 border-b border-line bg-transparent px-0 py-2.5 text-sm font-light text-ink transition-colors outline-none placeholder:text-dim focus:border-gold;
+  }
+
+  .link-arrow {
+    @apply inline-flex items-center gap-2 text-[12px] font-medium tracking-[0.2em] text-mute uppercase transition-colors hover:text-gold;
+  }
+  
+  .headline {
+    @apply font-sans font-extralight tracking-tight text-ink;
+  }
+}
+
+/* subtle film grain for placeholder surfaces */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
