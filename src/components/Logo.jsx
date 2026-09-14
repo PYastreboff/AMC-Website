@@ -1,8 +1,10 @@
+import { b } from '../lib/base'
+
 export default function Logo({ className = '', compact = false }) {
   return (
     <span className={`flex items-center gap-3 ${className}`}>
       <img
-        src="/amc-mark.svg"
+        src={b('/amc-mark.svg')}
         width={compact ? 26 : 32}
         height={compact ? 26 : 32}
         alt=""
