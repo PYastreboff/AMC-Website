@@ -3,6 +3,6 @@ import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/AMC-Website/',
+  base: process.env.VERCEL ? '/' : '/AMC-Website/',
   plugins: [react(), tailwindcss()],
 })
