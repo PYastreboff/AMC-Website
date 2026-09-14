@@ -4,7 +4,7 @@ import ArtPlaceholder from '../components/ArtPlaceholder'
 import { newsData } from '../data/siteData'
 
 const body = [
-  'For over seven decades, the Australian Male Choir has been defined by perfectly blended male voices and an unerring sense of occasion. This announcement marks an exciting new chapter for the ensemble as it continues to reach new audiences, at home and abroad.',
+  'For over a decade, the Australian Male Choir has been defined by perfectly blended male voices and an unerring sense of occasion. This announcement marks an exciting new chapter for the ensemble as it continues to reach new audiences, at home and abroad.',
   'Every member of the choir is individually professionally trained — a detail that distinguishes AMC from amateur ensembles and explains the depth, power and polish of its performances. Whether singing grand opera, jazz standards or contemporary favourites, the choir performs with the discipline of the concert stage.',
   'From harmonised Italian arias to jazz and pop, the repertoire is as broad as the occasions we serve: concerts, corporate galas, weddings, private parties and community celebrations. Wherever an audience gathers, there is a programme that fits.',
 ]
@@ -47,18 +47,27 @@ export default function NewsArticle() {
         </blockquote>
 
         <div className="mt-16">
-          <p className="label">More stories</p>
-          <div className="mt-5 grid gap-6 sm:grid-cols-2">
-            {others.map((n) => (
-              <Link key={n.slug} to={`/news/${n.slug}`} className="group">
-                <p className="label">{n.date}</p>
-                <h3 className="headline mt-2 text-lg text-ink transition-colors group-hover:text-gold">{n.title}</h3>
-                <span className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-medium tracking-[0.22em] text-mute uppercase transition-colors group-hover:text-gold">
-                  Read <ArrowRight size={12} />
-                </span>
-              </Link>
-            ))}
-          </div>
+          <Link
+            to="/news"
+            className="group inline-flex items-center gap-2 transition-colors"
+            aria-label="More stories"
+          >
+            <span className="label transition-colors group-hover:text-gold">More stories</span>
+            <ArrowRight size={13} className="text-gold transition-transform group-hover:translate-x-0.5" />
+          </Link>
+          {others.length > 0 && (
+            <div className="mt-5 grid gap-6 sm:grid-cols-2">
+              {others.map((n) => (
+                <Link key={n.slug} to={`/news/${n.slug}`} className="group">
+                  <p className="label">{n.date}</p>
+                  <h3 className="headline mt-2 text-lg text-ink transition-colors group-hover:text-gold">{n.title}</h3>
+                  <span className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-medium tracking-[0.22em] text-mute uppercase transition-colors group-hover:text-gold">
+                    Read <ArrowRight size={12} />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </article>

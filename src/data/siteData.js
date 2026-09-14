@@ -123,7 +123,7 @@ export const newsData = [
     title: 'The choir has formed',
     date: '13 September 2026',
     excerpt:
-      'We are AMC. Voices from across Australia have come together under the banner, excited for what we will build — connected, united and ready to perform.',
+      'We are AMC. Voices from across Australia, many of them long-time members of other choirs, have come together under the banner — connected, united and ready to perform.',
     image: G(3),
     tags: ['Announcement'],
   },

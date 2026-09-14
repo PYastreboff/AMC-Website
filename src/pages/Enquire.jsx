@@ -164,8 +164,18 @@ export default function Enquire() {
                     <Field label="Email" required>
                       <input required type="email" value={form.email} onChange={set('email')} placeholder="you@email.com" className="field" />
                     </Field>
-                    <Field label="Phone">
-                      <input type="tel" value={form.phone} onChange={set('phone')} placeholder="+61 4 000 000 000" className="field" />
+                    <Field label="Phone" required>
+                      <input
+                        required
+                        type="tel"
+                        inputMode="tel"
+                        value={form.phone}
+                        onChange={set('phone')}
+                        placeholder="+61 4 000 000 000"
+                        pattern="[+0-9()\-. ]{8,25}"
+                        title="Please enter a valid phone number, e.g. +61 4 123 456 789"
+                        className="field"
+                      />
                     </Field>
                     <Field label="Organisation">
                       <input value={form.organisation} onChange={set('organisation')} placeholder="Company, venue or family" className="field" />

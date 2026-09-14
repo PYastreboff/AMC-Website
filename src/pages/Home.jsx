@@ -233,7 +233,7 @@ function FactsBand() {
 }
 
 function LatestBand() {
-  const shots = [b('/images/gallery/56.jpg'), b('/images/gallery/59.jpg'), b('/images/gallery/63.jpg')]
+  const shots = [b('/images/gallery/54.jpg'), b('/images/gallery/58.jpg'), b('/images/gallery/62.jpg')]
   return (
     <section className="bg-bg py-24 sm:py-32">
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">

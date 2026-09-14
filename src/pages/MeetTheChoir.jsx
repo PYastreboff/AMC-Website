@@ -16,7 +16,7 @@ export default function MeetTheChoir() {
 
       <section className="py-16 sm:py-24">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-          <ArtPlaceholder image={b("/images/about-hero.jpg")} className="aspect-[21/9]" />
+          <ArtPlaceholder image={b("/images/gallery/61.jpg")} className="aspect-[21/9]" />
           <p className="mt-10 text-base leading-relaxed text-mute">
             Every roster draws on the same well of trained talent. For private events the choir
             performs as a compact professional ensemble of eight; for concerts, in full symphonic

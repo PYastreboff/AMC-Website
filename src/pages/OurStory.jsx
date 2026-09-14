@@ -24,7 +24,7 @@ export default function OurStory() {
     <>
       <PageHero
         title="Our story"
-        subtitle="The Australian Male Choir is a company of Australian male singers — incorporating professionally trained opera vocalists — performing across a wide range of genres, from harmonised Italian arias to jazz and pop."
+        subtitle="The Australian Male Choir is a company of Australian male singers, incorporating professionally trained opera vocalists, performing across a wide range of genres, from harmonised Italian arias to jazz and pop."
         crumb={{ to: '/about', label: 'About' }}
       />
 
@@ -62,15 +62,21 @@ export default function OurStory() {
       <section className="bg-bg py-24 sm:py-32">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
           <SectionHeading title="Milestones" />
-          <div className="mt-16">
-            {timeline.map((t) => (
-              <div key={t.n} className="grid gap-2 border-b border-line py-7 sm:grid-cols-12 sm:gap-8">
-                <div className="sm:col-span-12">
-                  <h3 className="headline text-xl text-ink">{t.title}</h3>
-                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-mute">{t.text}</p>
+          <div className="relative mt-16">
+            <div className="absolute left-3 top-2 bottom-2 w-px bg-line" aria-hidden="true" />
+            <div className="space-y-12">
+              {timeline.map((t) => (
+                <div key={t.n} className="relative grid gap-2 pl-14 sm:grid-cols-12 sm:gap-8">
+                  <span className="absolute left-0 top-1 flex h-7 w-7 items-center justify-center bg-bg text-[11px] font-semibold tracking-[0.18em] text-gold ring-1 ring-line" aria-hidden="true">
+                    {t.n}
+                  </span>
+                  <div className="sm:col-span-12">
+                    <h3 className="headline text-xl text-ink">{t.title}</h3>
+                    <p className="mt-2 max-w-2xl text-sm leading-relaxed text-mute">{t.text}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
