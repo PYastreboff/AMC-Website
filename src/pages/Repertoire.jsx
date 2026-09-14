@@ -2,6 +2,7 @@ import { Check } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
 import ArtPlaceholder from '../components/ArtPlaceholder'
+import { b } from '../lib/base'
 import { Button } from '../components/Button'
 import { repertoireGenres } from '../data/siteData'
 
@@ -63,7 +64,7 @@ export default function Repertoire() {
               </ul>
               <Button to="/enquire" className="mt-10 w-auto">Request a programme</Button>
             </div>
-            <ArtPlaceholder image="/images/gallery/18.jpg" className="aspect-[4/5]" />
+            <ArtPlaceholder image={b("/images/gallery/18.jpg")} className="aspect-[4/5]" />
           </div>
         </div>
       </section>

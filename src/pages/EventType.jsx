@@ -3,6 +3,7 @@ import { ArrowUpRight, Calendar, MapPin } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
 import ArtPlaceholder from '../components/ArtPlaceholder'
+import { b } from '../lib/base'
 import { Button } from '../components/Button'
 import { EVENT_CATEGORIES, eventsData } from '../data/siteData'
 
@@ -42,7 +43,7 @@ export default function EventType() {
       <section className="py-16 sm:py-24">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
           <ArtPlaceholder
-            image={catalogue[0]?.image || '/images/gallery/1.jpg'}
+            image={catalogue[0]?.image || b('/images/gallery/1.jpg')}
             className="aspect-[21/9]"
           />
         </div>

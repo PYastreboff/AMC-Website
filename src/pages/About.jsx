@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import PageHero from '../components/PageHero'
+import { b } from '../lib/base'
 import SectionHeading from '../components/SectionHeading'
 import ArtPlaceholder from '../components/ArtPlaceholder'
 import { Button } from '../components/Button'
@@ -10,21 +11,21 @@ const hub = [
     n: '01',
     title: 'Our Story',
     to: '/about/story',
-    image: '/images/gallery/1.jpg',
+    image: b('/images/gallery/1.jpg'),
     desc: 'Where the choir began and the values that still guide how we sing — tradition, craft and connection.',
   },
   {
     n: '02',
     title: 'Meet the Choir',
     to: '/about/choir',
-    image: '/images/gallery/20.jpg',
+    image: b('/images/gallery/20.jpg'),
     desc: 'The professionally trained singers behind the sound — from soaring tenors to our profound bass foundation.',
   },
   {
     n: '03',
     title: 'Genres & Repertoire',
     to: '/about/repertoire',
-    image: '/images/gallery/11.jpg',
+    image: b('/images/gallery/11.jpg'),
     desc: 'Six signature genres, from operatic bel canto to jazz, pop and the Australian songbook.',
   },
 ]
@@ -39,7 +40,7 @@ export default function About() {
 
       <section className="py-16 sm:py-24">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-          <ArtPlaceholder image="/images/gallery/8.jpg" className="aspect-[21/9]" />
+          <ArtPlaceholder image={b("/images/gallery/8.jpg")} className="aspect-[21/9]" />
         </div>
       </section>
 

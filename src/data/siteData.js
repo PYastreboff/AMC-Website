@@ -65,7 +65,9 @@ export const EVENT_CATEGORIES = [
   },
 ]
 
-const G = (n) => `/images/gallery/${n}.jpg`
+const b = (p) => `${import.meta.env.BASE_URL}${p.replace(/^\//, '')}`
+
+const G = (n) => b(`/images/gallery/${n}.jpg`)
 
 export const eventsData = []
 
@@ -173,15 +175,15 @@ export const mediaItems = [
 ]
 
 export const videoItems = [
-  { id: 1, title: 'Australian National Anthem · Advance Australia Fair', duration: '1:12', image: '/images/poster-1.jpg', src: '/videos/video-1.mp4' },
-  { id: 2, title: 'Bella Ciao', duration: '2:16', image: '/images/poster-2.jpg', src: '/videos/video-2.mp4' },
-  { id: 3, title: 'Those Were The Days, My Friend', duration: '3:51', image: '/images/poster-3.jpg', src: '/videos/video-3.mp4' },
+  { id: 1, title: 'Australian National Anthem · Advance Australia Fair', duration: '1:12', image: b('/images/poster-1.jpg'), src: b('/videos/video-1.mp4') },
+  { id: 2, title: 'Bella Ciao', duration: '2:16', image: b('/images/poster-2.jpg'), src: b('/videos/video-2.mp4') },
+  { id: 3, title: 'Those Were The Days, My Friend', duration: '3:51', image: b('/images/poster-3.jpg'), src: b('/videos/video-3.mp4') },
 ]
 
 export const audioItems = [
-  { id: 1, title: 'Advance Australia Fair', venue: 'Performed at Verbrugghen Hall, Sydney Conservatorium of Music', duration: '2:20', src: '/audio/advance-australia-fair.mp3' },
-  { id: 2, title: 'My Way', venue: 'Performed at Brisbane Multicultural Arts Centre', duration: '1:46', src: '/audio/my-way.mp3' },
-  { id: 3, title: 'Time · Inception', venue: 'Performed at Cabramatta Hall, Sydney', duration: '2:48', src: '/audio/time-inception.mp3' },
+  { id: 1, title: 'Advance Australia Fair', venue: 'Performed at Verbrugghen Hall, Sydney Conservatorium of Music', duration: '2:20', src: b('/audio/advance-australia-fair.mp3') },
+  { id: 2, title: 'My Way', venue: 'Performed at Brisbane Multicultural Arts Centre', duration: '1:46', src: b('/audio/my-way.mp3') },
+  { id: 3, title: 'Time · Inception', venue: 'Performed at Cabramatta Hall, Sydney', duration: '2:48', src: b('/audio/time-inception.mp3') },
 ]
 
 export const socialLinks = [

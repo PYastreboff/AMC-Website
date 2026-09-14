@@ -1,0 +1,1 @@
+export const b = (p) => `${import.meta.env.BASE_URL}${p.replace(/^\//, '')}`

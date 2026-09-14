@@ -6,6 +6,7 @@ import SectionHeading from '../components/SectionHeading'
 import { Button } from '../components/Button'
 import { EVENT_CATEGORIES, repertoireGenres } from '../data/siteData'
 import { CategoryIcon } from '../components/CategoryIcons'
+import { b } from '../lib/base'
 import { FacebookIcon, InstagramIcon, SpotifyIcon, YoutubeIcon } from '../components/SocialIcons'
 
 const facts = [
@@ -36,7 +37,7 @@ export default function Home() {
   )
 }
 
-const heroShots = ['/images/gallery/2.jpg', '/images/gallery/40.jpg', '/images/gallery/59.jpg', '/images/gallery/61.jpg']
+const heroShots = [b('/images/gallery/2.jpg'), b('/images/gallery/40.jpg'), b('/images/gallery/59.jpg'), b('/images/gallery/61.jpg')]
 
 function Hero() {
   const [slide, setSlide] = useState(0)
@@ -166,7 +167,7 @@ function WhyBook() {
           sub="Concerts, corporate galas, weddings, private parties and community celebrations — delivered to one standard: the concert stage."
         />
         <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <ArtPlaceholder image="/images/gallery/65.jpg" className="aspect-[4/5] lg:col-span-4" />
+          <ArtPlaceholder image={b("/images/gallery/65.jpg")} className="aspect-[4/5] lg:col-span-4" />
           <div className="grid gap-x-14 gap-y-12 sm:grid-cols-2 lg:col-span-8">
             {points.map((p) => (
               <div key={p.n}>
@@ -232,7 +233,7 @@ function FactsBand() {
 }
 
 function LatestBand() {
-  const shots = ['/images/gallery/56.jpg', '/images/gallery/59.jpg', '/images/gallery/63.jpg']
+  const shots = [b('/images/gallery/56.jpg'), b('/images/gallery/59.jpg'), b('/images/gallery/63.jpg')]
   return (
     <section className="bg-bg py-24 sm:py-32">
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
