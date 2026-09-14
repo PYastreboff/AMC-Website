@@ -53,18 +53,22 @@ export default function Enquire() {
     e.preventDefault()
     setError('')
     if (import.meta.env.DEV) {
-      console.info('Dev mode: form not posted — submissions work when deployed on Netlify.')
+      console.info('Dev mode: form not posted — submissions are delivered in production.')
       setSent(true)
       return
     }
-    const body = new URLSearchParams()
-    body.append('form-name', 'enquiry')
-    Object.entries(form).forEach(([key, value]) => body.append(key, value))
     try {
-      const res = await fetch('/', {
+      const payload = {
+        ...form,
+        bot_field: form['bot-field'],
+        _subject: `New AMC enquiry from ${form.name || 'the website'}`,
+        _template: 'table',
+      }
+      delete payload['bot-field']
+      const res = await fetch('https://formsubmit.co/ajax/zowzow811@gmail.com', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body,
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
       })
       if (!res.ok) throw new Error(`Submission failed (${res.status})`)
       setSent(true)
@@ -150,8 +154,7 @@ export default function Enquire() {
                   <Button variant="line" className="mt-8" onClick={() => setSent(false)}>Submit another enquiry</Button>
                 </div>
               ) : (
-                <form onSubmit={submit} name="enquiry" data-netlify="true" netlify-honeypot="bot-field">
-                  <input type="hidden" name="form-name" value="enquiry" />
+                <form onSubmit={submit} name="enquiry">
                   <p className="hidden" aria-hidden="true">
                     <label>
                       Don’t fill this out if you’re human: <input name="bot-field" tabIndex={-1} autoComplete="off" />
