@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Check, Compass } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
 import { Button } from '../components/Button'
@@ -13,6 +13,8 @@ const steps = [
   { n: '04', title: 'Perform', text: 'The choir arrives early and leaves your guests with a moment to remember.' },
 ]
 
+const assurances = ['No-obligation quotes', 'Fully insured & compliant', 'Flexible timing & staging']
+
 export default function Events() {
   return (
     <>
@@ -25,23 +27,39 @@ export default function Events() {
       <section className="bg-bg-1 py-24 sm:py-32">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
           <SectionHeading title="Choose your occasion" />
-          <div className="mt-16">
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {EVENT_CATEGORIES.map((c) => (
               <Link
                 key={c.slug}
                 to={`/events/${c.slug}`}
-                className="group grid items-baseline gap-x-8 gap-y-1 border-b border-line py-7 transition-colors sm:grid-cols-12 sm:py-8"
+                className="group flex flex-col border border-line bg-bg p-8 transition-colors hover:border-gold/40"
               >
-                <span className="headline text-2xl leading-snug text-ink transition-colors group-hover:text-gold sm:col-span-4 sm:text-3xl">
-                  {c.label}
-                </span>
-                <span className="text-sm leading-relaxed text-mute sm:col-span-6">{c.description}</span>
-                <span className="flex items-baseline justify-end gap-3 sm:col-span-2">
-                  <span className="text-[11px] font-medium tracking-[0.22em] text-mute uppercase">Read</span>
-                  <ArrowUpRight size={18} className="text-dim transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold" />
-                </span>
+                <div className="flex items-center justify-between">
+                  <CategoryIcon slug={c.slug} size={20} className="text-gold" />
+                  <ArrowUpRight size={16} className="text-dim transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold" />
+                </div>
+                <h3 className="headline mt-6 text-xl text-ink transition-colors group-hover:text-gold">{c.label}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-mute">{c.description}</p>
+                <div className="mt-6 flex items-baseline justify-between">
+                  <span className="label">{c.points ? c.size : 'The archive'}</span>
+                  <span className="text-[11px] font-medium tracking-[0.2em] text-mute uppercase">Read more</span>
+                </div>
               </Link>
             ))}
+
+            <Link
+              to="/enquire"
+              className="group flex flex-col items-start justify-center border border-dashed border-line-2 p-8 transition-colors hover:border-gold/50"
+            >
+              <Compass size={20} className="text-gold" />
+              <h3 className="headline mt-6 text-xl text-ink">Not sure which fits?</h3>
+              <p className="mt-2 text-sm leading-relaxed text-mute">
+                Start an enquiry and we’ll help you shape the right performance.
+              </p>
+              <span className="label mt-6 inline-flex items-center gap-2 transition-colors group-hover:text-gold">
+                Enquire <ArrowRight size={13} />
+              </span>
+            </Link>
           </div>
         </div>
       </section>
@@ -59,22 +77,32 @@ export default function Events() {
             </p>
           </div>
 
-          <div className="mt-14">
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {steps.map((s) => (
-              <div key={s.n} className="grid gap-2 border-b border-line py-7 sm:grid-cols-12 sm:gap-8">
-                <h3 className="headline text-lg text-ink sm:col-span-4 sm:text-xl">{s.title}</h3>
-                <p className="text-sm leading-relaxed text-mute sm:col-span-8">{s.text}</p>
+              <div key={s.n} className="group border border-line bg-bg-1 p-8 transition-colors hover:border-gold/40">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="h-px w-8 bg-gold" />
+                  <span className="headline text-2xl text-gold/80">{s.n}</span>
+                </div>
+                <h3 className="headline mt-6 text-xl text-ink transition-colors group-hover:text-gold">{s.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-mute">{s.text}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-12 flex flex-col gap-3 text-sm text-mute sm:flex-row sm:items-center sm:justify-between">
-            <p className="flex flex-wrap gap-x-8 gap-y-2">
-              <span>No-obligation quotes</span>
-              <span>Fully insured &amp; compliant</span>
-              <span>Flexible timing &amp; staging</span>
-            </p>
-            <Button to="/enquire" className="w-auto">Enquire / Book AMC</Button>
+          <div className="mt-12 flex flex-col gap-6 rounded-sm border border-line bg-bg-1 px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+            <ul className="flex flex-wrap items-center gap-x-8 gap-y-3">
+              {assurances.map((a) => (
+                <li
+                  key={a}
+                  className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.2em] text-mute uppercase"
+                >
+                  <Check size={13} className="shrink-0 text-gold" />
+                  {a}
+                </li>
+              ))}
+            </ul>
+            <Button to="/enquire" className="w-auto shrink-0">Enquire / Book AMC</Button>
           </div>
         </div>
       </section>

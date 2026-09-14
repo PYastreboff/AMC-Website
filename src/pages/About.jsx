@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
+import ArtPlaceholder from '../components/ArtPlaceholder'
 import { Button } from '../components/Button'
 
 const hub = [
@@ -9,18 +10,21 @@ const hub = [
     n: '01',
     title: 'Our Story',
     to: '/about/story',
+    image: '/images/gallery/1.jpg',
     desc: 'Where the choir began and the values that still guide how we sing — tradition, craft and connection.',
   },
   {
     n: '02',
     title: 'Meet the Choir',
     to: '/about/choir',
+    image: '/images/gallery/20.jpg',
     desc: 'The professionally trained singers behind the sound — from soaring tenors to our profound bass foundation.',
   },
   {
     n: '03',
     title: 'Genres & Repertoire',
     to: '/about/repertoire',
+    image: '/images/gallery/11.jpg',
     desc: 'Six signature genres, from operatic bel canto to jazz, pop and the Australian songbook.',
   },
 ]
@@ -33,24 +37,30 @@ export default function About() {
         subtitle="The Australian Male Choir is a company of professionally trained male voices performing across a wide range of genres, from harmonised Italian arias to jazz and pop. Choose where to begin."
       />
 
+      <section className="py-16 sm:py-24">
+        <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
+          <ArtPlaceholder image="/images/gallery/8.jpg" className="aspect-[21/9]" />
+        </div>
+      </section>
+
       <section className="bg-bg-1 py-24 sm:py-32">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
           <SectionHeading title="Begin with the choir" />
-          <div className="mt-16">
+          <div className="mt-16 grid gap-6 md:grid-cols-3">
             {hub.map((h) => (
               <Link
                 key={h.n}
                 to={h.to}
-                className="group grid items-baseline gap-x-8 gap-y-1 border-b border-line py-7 transition-colors sm:grid-cols-12 sm:py-8"
+                className="group border border-line bg-bg transition-colors hover:border-gold/40"
               >
-                <span className="headline text-2xl leading-snug text-ink transition-colors group-hover:text-gold sm:col-span-4 sm:text-3xl">
-                  {h.title}
-                </span>
-                <span className="text-sm leading-relaxed text-mute sm:col-span-6">{h.desc}</span>
-                <span className="flex items-baseline justify-end gap-3 sm:col-span-2">
-                  <span className="text-[11px] font-medium tracking-[0.22em] text-mute uppercase">Read</span>
-                  <ArrowUpRight size={18} className="text-dim transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold" />
-                </span>
+                <ArtPlaceholder image={h.image} className="aspect-[16/10]" />
+                <div className="p-7">
+                  <h3 className="headline text-xl text-ink transition-colors group-hover:text-gold">{h.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-mute">{h.desc}</p>
+                  <span className="mt-6 inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.2em] text-mute uppercase transition-colors group-hover:text-gold">
+                    Read <ArrowUpRight size={14} />
+                  </span>
+                </div>
               </Link>
             ))}
           </div>

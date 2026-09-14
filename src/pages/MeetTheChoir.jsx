@@ -15,7 +15,7 @@ export default function MeetTheChoir() {
 
       <section className="py-16 sm:py-24">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-          <ArtPlaceholder label="The full choir in concert" sub="Sydney · full chorus configuration" className="aspect-[21/9]" />
+          <ArtPlaceholder image="/images/about-hero.jpg" className="aspect-[21/9]" />
           <p className="mt-10 text-base leading-relaxed text-mute">
             Every roster draws on the same well of trained talent. For private events the choir
             performs as a compact professional ensemble of eight; for concerts, in full symphonic
@@ -30,7 +30,7 @@ export default function MeetTheChoir() {
           <div className="mt-10 grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
             {choirMembers.map((m) => (
               <div key={m.name}>
-                <ArtPlaceholder label="" sub={`${contract(m.role)}`} className="aspect-[4/5]" />
+                <ArtPlaceholder image="/images/gallery/20.jpg" sub={contract(m.role)} className="aspect-[4/5]" />
                 <div className="mt-5">
                   <p className="text-[11px] font-medium tracking-[0.28em] text-gold uppercase">{m.voiceType}</p>
                   <p className="mt-2 text-sm leading-relaxed text-mute">{m.bio}</p>

@@ -33,7 +33,7 @@ export default function NewsArticle() {
       </div>
 
       <div className="mx-auto w-full max-w-4xl px-5 sm:px-8">
-        <ArtPlaceholder label="" sub="Story image" className="aspect-[21/10]" />
+        <ArtPlaceholder image={article.image} className="aspect-[21/10]" />
       </div>
 
       <div className="mx-auto w-full max-w-2xl px-5 py-16 sm:px-8">

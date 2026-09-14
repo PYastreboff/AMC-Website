@@ -86,7 +86,17 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-line pt-6 text-[11px] tracking-wider text-dim uppercase sm:flex-row">
-          <p>© {new Date().getFullYear()} Australian Male Choir</p>
+          <p>
+            © {new Date().getFullYear()} Australian Male Choir · Website by{' '}
+            <a
+              href="https://www.linkedin.com/in/peter-yastreboff-6a9664313/"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="transition-colors hover:text-gold"
+            >
+              Peter Y.
+            </a>
+          </p>
           <p className="flex gap-6">
             <Link to="/privacy" className="transition-colors hover:text-gold">Privacy</Link>
             <Link to="/terms" className="transition-colors hover:text-gold">Terms</Link>

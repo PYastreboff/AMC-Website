@@ -42,8 +42,7 @@ export default function EventType() {
       <section className="py-16 sm:py-24">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
           <ArtPlaceholder
-            label=""
-            sub={`${cat.label} — event photography, replace with film still`}
+            image={catalogue[0]?.image || '/images/gallery/1.jpg'}
             className="aspect-[21/9]"
           />
         </div>
@@ -98,7 +97,7 @@ export default function EventType() {
                   className="grid grid-cols-1 gap-6 border-b border-line py-8 sm:grid-cols-12 sm:items-center"
                 >
                   <div className="sm:col-span-3">
-                    <ArtPlaceholder label="" sub="Performance still" className="aspect-[4/3]" />
+                    <ArtPlaceholder image={e.image} className="aspect-[4/3]" />
                   </div>
                   <div className="sm:col-span-7">
                     <h2 className="headline text-xl text-ink sm:text-2xl">{e.title}</h2>

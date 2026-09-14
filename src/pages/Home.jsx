@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, ArrowUpRight, Compass, MapPin } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { ArrowRight, ArrowUpRight, Compass } from 'lucide-react'
 import ArtPlaceholder from '../components/ArtPlaceholder'
-import Ornament from '../components/Ornament'
 import SectionHeading from '../components/SectionHeading'
 import { Button } from '../components/Button'
-import { EVENT_CATEGORIES, eventsData, repertoireGenres } from '../data/siteData'
+import { EVENT_CATEGORIES, repertoireGenres } from '../data/siteData'
+import { CategoryIcon } from '../components/CategoryIcons'
 import { FacebookIcon, InstagramIcon, SpotifyIcon, YoutubeIcon } from '../components/SocialIcons'
 
 const facts = [
@@ -21,17 +22,6 @@ const socials = [
   { name: 'Facebook', Icon: FacebookIcon, href: 'https://facebook.com' },
 ]
 
-const testimonials = [
-  {
-    quote: 'The room fell silent for their opening aria and was on its feet by the finale.',
-    name: 'Melissa R., event director — Financial Sector Summit',
-  },
-  {
-    quote: 'They read the room perfectly — from the ceremony processional to a surprise pop finale.',
-    name: 'Amber W., wedding — Hunter Valley',
-  },
-]
-
 export default function Home() {
   return (
     <>
@@ -40,20 +30,39 @@ export default function Home() {
       <WhyBook />
       <RepertoireBand />
       <FactsBand />
-      <TestimonialBand />
       <LatestBand />
       <CTABand />
     </>
   )
 }
 
+const heroShots = ['/images/gallery/2.jpg', '/images/gallery/40.jpg', '/images/gallery/59.jpg', '/images/gallery/61.jpg']
+
 function Hero() {
+  const [slide, setSlide] = useState(0)
+
+  useEffect(() => {
+    const t = setInterval(() => setSlide((s) => (s + 1) % heroShots.length), 6000)
+    return () => clearInterval(t)
+  }, [])
+
   return (
     <section className="relative flex min-h-screen flex-col">
-      {/* muted backdrop — swap for hero film in /public */}
-      <div className="absolute inset-0" aria-hidden="true">
-        <ArtPlaceholder className="h-full aspect-auto" bordered={false} />
-        <div className="absolute inset-0 bg-gradient-to-b from-bg/70 via-bg/60 to-bg" />
+      {/* muted fading backdrop */}
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+        {heroShots.map((src, i) => (
+          <div
+            key={src}
+            className={`absolute inset-0 transition-opacity duration-1000 ${i === slide ? 'opacity-100' : 'opacity-0'}`}
+          >
+            <div
+              className={`h-full w-full transition-transform ease-linear duration-[6000ms] ${i === slide ? 'scale-110' : 'scale-100'}`}
+            >
+              <ArtPlaceholder image={src} className="h-full aspect-auto" bordered={false} />
+            </div>
+          </div>
+        ))}
+        <div className="absolute inset-0 bg-gradient-to-b from-bg/85 via-bg/70 to-bg" />
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-5 pb-24 pt-44 text-center sm:px-8">
@@ -65,14 +74,6 @@ function Hero() {
           Professional male voices — from harmonised Italian arias to jazz and pop.
           Performances of every scale, in Australia and around the world.
         </p>
-
-        {/* date row */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] tracking-[0.22em] text-mute uppercase">
-          <span className="label">Next concert</span>
-          <span className="text-ink">6 September 2026</span>
-          <span aria-hidden="true">—</span>
-          <span>Sydney Opera House</span>
-        </div>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Button to="/enquire" className="w-auto">Enquire / Book AMC</Button>
@@ -111,36 +112,40 @@ function EventsBand() {
           sub="Every performance is shaped to the occasion — from sold-out concert halls to ceremonies remembered for years."
         />
 
-        <div className="mt-16">
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {EVENT_CATEGORIES.map((cat) => (
             <Link
               key={cat.slug}
               to={`/events/${cat.slug}`}
-              className="group grid grid-cols-1 items-baseline gap-x-8 gap-y-1 border-b border-line py-6 transition-colors sm:grid-cols-12 sm:py-7"
+              className="group flex flex-col border border-line bg-bg p-8 transition-colors hover:border-gold/40"
             >
-              <span className="headline text-xl leading-snug text-ink transition-colors group-hover:text-gold sm:col-span-7 sm:text-2xl">
-                {cat.label}
-              </span>
-              <span className="flex items-baseline justify-between gap-6 sm:col-span-4 sm:justify-end">
-                <span className="hidden text-sm text-mute sm:block">{cat.points ? cat.size : 'The archive'}</span>
-                <span className="text-sm text-mute">Read&nbsp;more</span>
-                <ArrowUpRight size={18} className="text-dim transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-gold" />
-              </span>
+              <div className="flex items-center justify-between">
+                <CategoryIcon slug={cat.slug} size={20} className="text-gold" />
+                <ArrowUpRight size={16} className="text-dim transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold" />
+              </div>
+              <h3 className="headline mt-6 text-xl text-ink transition-colors group-hover:text-gold">{cat.label}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-mute">{cat.description}</p>
+              <div className="mt-6 flex items-baseline justify-between">
+                <span className="label">{cat.points ? cat.size : 'The archive'}</span>
+                <span className="text-[11px] font-medium tracking-[0.2em] text-mute uppercase">Read more</span>
+              </div>
             </Link>
           ))}
-        </div>
 
-        <p className="mt-12 text-center text-sm text-mute">
-          Not sure which fits?{' '}
-          <Link to="/enquire" className="text-ink underline decoration-gold/60 underline-offset-4 hover:text-gold">
-            Start an enquiry
+          <Link
+            to="/enquire"
+            className="group flex flex-col items-start justify-center border border-dashed border-line-2 p-8 transition-colors hover:border-gold/50"
+          >
+            <Compass size={20} className="text-gold" />
+            <h3 className="headline mt-6 text-xl text-ink">Not sure which fits?</h3>
+            <p className="mt-2 text-sm leading-relaxed text-mute">
+              Start an enquiry and we’ll help you shape the right performance.
+            </p>
+            <span className="label mt-6 inline-flex items-center gap-2 transition-colors group-hover:text-gold">
+              Enquire <ArrowRight size={13} />
+            </span>
           </Link>
-          , or{' '}
-          <Link to="/events" className="text-ink underline decoration-gold/60 underline-offset-4 hover:text-gold">
-            see every performance type
-          </Link>
-          .
-        </p>
+        </div>
       </div>
     </section>
   )
@@ -160,13 +165,16 @@ function WhyBook() {
           title="Why book AMC"
           sub="Concerts, corporate galas, weddings, private parties and community celebrations — delivered to one standard: the concert stage."
         />
-        <div className="mt-16 grid gap-x-14 gap-y-12 sm:grid-cols-2">
-          {points.map((p) => (
-            <div key={p.n}>
-              <h3 className="headline text-xl">{p.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-mute">{p.text}</p>
-            </div>
-          ))}
+        <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <ArtPlaceholder image="/images/gallery/65.jpg" className="aspect-[4/5] lg:col-span-4" />
+          <div className="grid gap-x-14 gap-y-12 sm:grid-cols-2 lg:col-span-8">
+            {points.map((p) => (
+              <div key={p.n}>
+                <h3 className="headline text-xl">{p.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-mute">{p.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -223,64 +231,32 @@ function FactsBand() {
   )
 }
 
-function TestimonialBand() {
-  return (
-    <section className="bg-bg-1 py-24 sm:py-36">
-      <div className="mx-auto w-full max-w-3xl px-5 text-center sm:px-8">
-        <p className="label">What organisers say</p>
-        <figure className="mt-10">
-          <blockquote className="font-serif text-2xl leading-normal text-ink italic sm:text-3xl">
-            “{testimonials[0].quote}”
-          </blockquote>
-          <figcaption className="label mt-8">{testimonials[0].name}</figcaption>
-        </figure>
-        <Ornament className="mt-16" />
-        <figure className="mt-16">
-          <blockquote className="font-serif text-2xl leading-normal text-ink italic sm:text-3xl">
-            “{testimonials[1].quote}”
-          </blockquote>
-          <figcaption className="label mt-8">{testimonials[1].name}</figcaption>
-        </figure>
-      </div>
-    </section>
-  )
-}
-
 function LatestBand() {
-  const events = eventsData.slice(0, 3)
+  const shots = ['/images/gallery/56.jpg', '/images/gallery/59.jpg', '/images/gallery/63.jpg']
   return (
     <section className="bg-bg py-24 sm:py-32">
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
         <div className="flex items-end justify-between gap-6">
-          <SectionHeading title="Latest performances" center={false} rule={false} />
-          <Link to="/events" className="link-arrow hidden shrink-0 sm:inline-flex">
-            All events <ArrowRight size={13} />
+          <SectionHeading
+            title="The choir on stage"
+            sub="Performance dates are announced soon — until then, a glimpse of the sound and spirit of the choir."
+            center={false}
+            rule={false}
+          />
+          <Link to="/media" className="link-arrow hidden shrink-0 sm:inline-flex">
+            Watch &amp; listen <ArrowRight size={13} />
           </Link>
         </div>
 
         <div className="mt-14 grid gap-x-10 gap-y-14 sm:grid-cols-3">
-          {events.map((e) => (
-            <Link key={e.id} to="/enquire" className="group">
-              <ArtPlaceholder
-                label=""
-                sub="Performance still"
-                className="aspect-[4/3]"
-              />
-              <div className="mt-5">
-                <div>
-                  <h3 className="headline text-lg text-ink transition-colors group-hover:text-gold">
-                    {e.title}
-                  </h3>
-                  <p className="label mt-2">{e.date}</p>
-                </div>
-                <span className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-medium tracking-[0.2em] text-mute uppercase">
-                  <MapPin size={13} className="text-gold" />
-                  {e.location.split(',')[0]}
-                </span>
-              </div>
-            </Link>
+          {shots.map((src) => (
+            <ArtPlaceholder key={src} image={src} className="aspect-[4/3]" />
           ))}
         </div>
+
+        <p className="mt-12 text-center text-sm text-mute">
+          No performances announced yet.
+        </p>
       </div>
     </section>
   )

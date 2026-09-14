@@ -63,7 +63,7 @@ export default function Repertoire() {
               </ul>
               <Button to="/enquire" className="mt-10 w-auto">Request a programme</Button>
             </div>
-            <ArtPlaceholder label="Programme curation" sub="Working notes — replace with real photography" className="aspect-[4/5]" />
+            <ArtPlaceholder image="/images/gallery/18.jpg" className="aspect-[4/5]" />
           </div>
         </div>
       </section>
