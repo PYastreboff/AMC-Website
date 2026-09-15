@@ -58,19 +58,17 @@ export default function Enquire() {
       return
     }
     try {
-      const payload = {
-        ...form,
-        bot_field: form['bot-field'],
-        _subject: `New AMC enquiry from ${form.name || 'the website'}`,
-        _template: 'table',
-      }
-      delete payload['bot-field']
-      const res = await fetch('https://formsubmit.co/ajax/zowzow811@gmail.com', {
+      const botField = new FormData(e.currentTarget).get('bot-field') || ''
+      const res = await fetch('/api/enquiry', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, bot_field: botField }),
       })
-      if (!res.ok) throw new Error(`Submission failed (${res.status})`)
+      if (!res.ok) {
+        const data = await res.json().catch(() => null)
+        const detail = data && data.error ? `: ${data.error}` : ''
+        throw new Error(`Submission failed${detail} (${res.status})`)
+      }
       setSent(true)
     } catch (err) {
       console.error(err)
