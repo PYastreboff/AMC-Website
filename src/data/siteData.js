@@ -1,7 +1,6 @@
 export const CHOIR_NAME = 'Australian Male Choir'
 export const CHOIR_SHORT = 'AMC'
-export const CONTACT_EMAIL = 'bookings@australianmalechoir.com.au'
-export const CONTACT_PHONE = '+61 400 000 000'
+export const CONTACT_EMAIL = 'admin@australianmalechoir.com.au'
 export const CONTACT_CITY = 'Sydney, Australia'
 
 export const EVENT_CATEGORIES = [

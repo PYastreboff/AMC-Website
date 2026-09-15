@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { Mail, MapPin } from 'lucide-react'
 import Logo from '../components/Logo'
 import { FacebookIcon, InstagramIcon, SpotifyIcon, YoutubeIcon } from '../components/SocialIcons'
-import { CONTACT_CITY, CONTACT_EMAIL, CONTACT_PHONE } from '../data/siteData'
+import { CONTACT_CITY, CONTACT_EMAIL } from '../data/siteData'
 
 const exploreLinks = [
   { label: 'About', to: '/about' },
@@ -66,12 +66,6 @@ export default function Footer() {
                 <Mail size={14} className="shrink-0 text-gold" />
                 <a href={`mailto:${CONTACT_EMAIL}`} className="transition-colors hover:text-gold">
                   {CONTACT_EMAIL}
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone size={14} className="shrink-0 text-gold" />
-                <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`} className="transition-colors hover:text-gold">
-                  {CONTACT_PHONE}
                 </a>
               </li>
               <li className="flex items-center gap-3">

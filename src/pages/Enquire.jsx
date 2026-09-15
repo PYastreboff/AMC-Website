@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { ArrowUpRight, Check, Clock, Mail, MapPin, Phone } from 'lucide-react'
+import { ArrowUpRight, Check, Clock, Mail, MapPin } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import { Button } from '../components/Button'
 import { FacebookIcon, InstagramIcon, SpotifyIcon, YoutubeIcon } from '../components/SocialIcons'
-import { CONTACT_CITY, CONTACT_EMAIL, CONTACT_PHONE, EVENT_CATEGORIES, socialLinks } from '../data/siteData'
+import { CONTACT_CITY, CONTACT_EMAIL, EVENT_CATEGORIES, socialLinks } from '../data/siteData'
 
 const notes = [
   { title: 'Response time', text: 'every enquiry within two business days' },
@@ -15,7 +15,6 @@ const notes = [
 
 const contactRows = [
   { Icon: Mail, title: 'Email', value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
-  { Icon: Phone, title: 'Phone', value: CONTACT_PHONE, href: `tel:${CONTACT_PHONE.replace(/\s/g, '')}` },
   { Icon: MapPin, title: 'Based in', value: CONTACT_CITY },
   { Icon: Clock, title: 'Office hours', value: 'Mon–Fri · 9am–5pm AEST' },
 ]
@@ -165,9 +164,8 @@ export default function Enquire() {
                     <Field label="Email" required>
                       <input required type="email" value={form.email} onChange={set('email')} placeholder="you@email.com" className="field" />
                     </Field>
-                    <Field label="Phone" required>
+                    <Field label="Phone">
                       <input
-                        required
                         type="tel"
                         inputMode="tel"
                         value={form.phone}
