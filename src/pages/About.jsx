@@ -16,13 +16,6 @@ const hub = [
   },
   {
     n: '02',
-    title: 'Meet the Choir',
-    to: '/about/choir',
-    image: b('/images/gallery/61.jpg'),
-    desc: 'The professionally trained singers behind the sound — from soaring tenors to our profound bass foundation.',
-  },
-  {
-    n: '03',
     title: 'Genres & Repertoire',
     to: '/about/repertoire',
     image: b('/images/gallery/11.jpg'),

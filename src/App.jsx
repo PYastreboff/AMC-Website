@@ -5,7 +5,6 @@ import Footer from './layout/Footer'
 import Home from './pages/Home'
 import About from './pages/About'
 import OurStory from './pages/OurStory'
-import MeetTheChoir from './pages/MeetTheChoir'
 import Repertoire from './pages/Repertoire'
 import Events from './pages/Events'
 import EventType from './pages/EventType'
@@ -35,7 +34,6 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/about/story" element={<OurStory />} />
-            <Route path="/about/choir" element={<MeetTheChoir />} />
             <Route path="/about/repertoire" element={<Repertoire />} />
             <Route path="/events" element={<Events />} />
             <Route path="/events/:slug" element={<EventType />} />

@@ -1,8 +1,6 @@
-import { ArrowUpRight } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
 import ArtPlaceholder from '../components/ArtPlaceholder'
-import { Button } from '../components/Button'
 
 const timeline = [
   { n: '01', title: 'The founding voices', text: 'A gathering of Australian male singers bound by one belief: that blended male voices are among music’s most powerful instruments.' },
@@ -92,15 +90,7 @@ export default function OurStory() {
               </div>
             ))}
           </div>
-          <div className="mt-20 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
-            <p className="headline max-w-md text-xl">
-              Discover the musicians behind the music.
-            </p>
-            <Button to="/about/choir" variant="line" className="w-auto">
-              Meet the choir <ArrowUpRight size={14} />
-            </Button>
           </div>
-        </div>
       </section>
     </>
   )

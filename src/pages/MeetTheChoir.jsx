@@ -1,9 +1,6 @@
 import { Music4 } from 'lucide-react'
 import PageHero from '../components/PageHero'
-import ArtPlaceholder from '../components/ArtPlaceholder'
-import { b } from '../lib/base'
 import { Button } from '../components/Button'
-import { choirMembers } from '../data/siteData'
 
 export default function MeetTheChoir() {
   return (
@@ -13,34 +10,6 @@ export default function MeetTheChoir() {
         subtitle="Fifty-odd professionally trained vocalists, performing in configurations from an intimate octet to a full symphonic chorus."
         crumb={{ to: '/about', label: 'Back to About' }}
       />
-
-      <section className="py-16 sm:py-24">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-          <ArtPlaceholder image={b("/images/gallery/61.jpg")} className="aspect-[21/9]" />
-          <p className="mt-10 text-base leading-relaxed text-mute">
-            Every roster draws on the same well of trained talent. For private events the choir
-            performs as a compact professional ensemble of eight; for concerts, in full symphonic
-            array of fifty or more.
-          </p>
-        </div>
-      </section>
-
-      <section className="bg-bg-1 py-24 sm:py-32">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-          <p className="label">Sections</p>
-          <div className="mt-10 grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
-            {choirMembers.map((m) => (
-              <div key={m.name}>
-                <ArtPlaceholder image={b("/images/gallery/20.jpg")} sub={contract(m.role)} className="aspect-[4/5]" />
-                <div className="mt-5">
-                  <p className="text-[11px] font-medium tracking-[0.28em] text-gold uppercase">{m.voiceType}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-mute">{m.bio}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="bg-bg py-24 sm:py-32">
         <div className="mx-auto w-full max-w-4xl px-5 text-center sm:px-8">
@@ -56,8 +25,4 @@ export default function MeetTheChoir() {
       </section>
     </>
   )
-}
-
-function contract(str) {
-  return str.replace(' section', '').toUpperCase()
 }

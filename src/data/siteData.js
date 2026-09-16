@@ -109,12 +109,7 @@ export const repertoireGenres = [
   },
 ]
 
-export const choirMembers = [
-  { name: 'Tenor I', role: 'Full-time professional section', voiceType: 'Tenor 1', bio: 'Bright, soaring leads often drawn from Australia’s leading opera and musical-theatre stages.' },
-  { name: 'Tenor II', role: 'Full-time professional section', voiceType: 'Tenor 2', bio: 'Lyric tenors lending warmth and blend across the classical line.' },
-  { name: 'Baritone', role: 'Full-time professional section', voiceType: 'Baritone', bio: 'Rich, resonant middle voices anchoring every arrangement with clarity and colour.' },
-  { name: 'Bass', role: 'Full-time professional section', voiceType: 'Bass', bio: 'The foundation of the chorus — profound low voices delivering depth and power.' },
-]
+
 
 export const newsData = [
   {
