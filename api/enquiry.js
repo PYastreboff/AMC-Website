@@ -79,17 +79,11 @@ export default async function handler(req, res) {
 
   const sent = new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney', dateStyle: 'long', timeStyle: 'short' })
 
-  const LOGO =
-    'data:image/svg+xml;base64,PGcgaWQ9IkxheWVyXzIiPgogICAgPHBvbHlnb24gZmlsbD0iI2MyYTI1YiIgcG9pbnRzPSIxLjIxIDM0LjM4IDMuMTIgMzQuMzggMTEuNjggMTguMDMgMjAuMTcgMzQuMzEgMjQuMzYgMzQuMzEgMTIuODQgMTIuMTggMS4yMSAzNC4zOCIvPgogICAgPHBvbHlnb24gZmlsbD0iI2MyYTI1YiIgcG9pbnRzPSIyOS4yNyA0Ni41NSAyOC44NiAzLjY5IDQ3IDI0Ljc2IDY1LjE4IDIuNzQgNjUuNiA0Ni40MiA1OS4yMiA0Ni40OSA1OC45MiAxNS40OSA0NS43MiAzMi41IDMyLjA2IDE2LjM0IDMyLjM1IDQ2LjU5IDI5LjI3IDQ2LjU1Ii8+CiAgICA8cGF0aCBmaWxsPSIjYzJhMjViIiBkPSJNNTYuNTIsNTkuNGMtMi4yNiwyLjc1LTUuOCw0LjUyLTkuNzgsNC41Mi02LjgyLDAtMTIuMzUtNS4yMS0xMi4zNS0xMS42NHM1LjUzLTExLjY0LDEyLjM1LTExLjY0YzMuODIsMCw3LjI0LDEuNjQsOS41MSw0LjIxbC0xLjMxLDEuMDNjLTEuOC0yLjA5LTQuNS0zLjQxLTcuNTItMy40MS01LjQzLDAtOS44Myw0LjMtOS44Myw5LjYxczQuNCw5LjYxLDkuODMsOS42MWMzLjEsMCw1Ljg3LTEuNCw3LjY3LTMuNTlsMS40MywxLjNaIi8+CiAgPC9nPg=='
-
   const brandHeader = `
     <div style="background:#0d0d0f;padding:32px 40px;border-bottom:1px solid #2a2a2e;">
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
         <tr>
-          <td style="width:44px;vertical-align:middle;">
-            <img src="${LOGO}" width="40" height="40" alt="AMC" style="display:block;width:40px;height:40px;" />
-          </td>
-          <td style="vertical-align:middle;padding-left:14px;">
+          <td style="vertical-align:middle;">
             <span style="font-size:17px;letter-spacing:0.22em;text-transform:uppercase;color:#c2a25b;font-weight:700;">Australian Male Choir</span>
             <div style="margin-top:3px;font-size:12px;color:#8a8a8a;">australianmalechoir.com.au</div>
           </td>
