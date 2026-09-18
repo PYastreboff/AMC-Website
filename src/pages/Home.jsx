@@ -41,6 +41,12 @@ const heroShots = [b('/images/gallery/2.jpg'), b('/images/gallery/40.jpg'), b('/
 
 function Hero() {
   const [slide, setSlide] = useState(0)
+  const [zoomed, setZoomed] = useState(false)
+
+  useEffect(() => {
+    const t = setTimeout(() => setZoomed(true), 100)
+    return () => clearTimeout(t)
+  }, [])
 
   useEffect(() => {
     const t = setInterval(() => setSlide((s) => (s + 1) % heroShots.length), 6000)
@@ -57,7 +63,7 @@ function Hero() {
             className={`absolute inset-0 transition-opacity duration-1000 ${i === slide ? 'opacity-100' : 'opacity-0'}`}
           >
             <div
-              className={`h-full w-full transition-transform ease-linear duration-[6000ms] ${i === slide ? 'scale-110' : 'scale-100'}`}
+              className={`h-full w-full transition-transform ease-linear duration-[6000ms] ${i === slide && zoomed ? 'scale-110' : 'scale-100'}`}
             >
               <ArtPlaceholder image={src} className="h-full aspect-auto" bordered={false} />
             </div>
