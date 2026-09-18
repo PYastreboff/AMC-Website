@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, ArrowUpRight, Check, Compass } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
+import ArtPlaceholder from '../components/ArtPlaceholder'
 import { Button } from '../components/Button'
 import { EVENT_CATEGORIES } from '../data/siteData'
 import { CategoryIcon } from '../components/CategoryIcons'
@@ -32,17 +33,25 @@ export default function Events() {
               <Link
                 key={c.slug}
                 to={`/events/${c.slug}`}
-                className="group flex flex-col border border-line bg-bg p-8 transition-colors hover:border-gold/40"
+                className="group flex flex-col border border-line bg-bg transition-colors hover:border-gold/40"
               >
-                <div className="flex items-center justify-between">
-                  <CategoryIcon slug={c.slug} size={20} className="text-gold" />
-                  <ArrowUpRight size={16} className="text-dim transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold" />
+                <div className="overflow-hidden">
+                  <ArtPlaceholder
+                    image={c.image}
+                    className="aspect-[16/10] transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
                 </div>
-                <h3 className="headline mt-6 text-xl text-ink transition-colors group-hover:text-gold">{c.label}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-mute">{c.description}</p>
-                <div className="mt-6 flex items-baseline justify-between">
-                  <span className="label">{c.points ? c.size : 'The archive'}</span>
-                  <span className="text-[11px] font-medium tracking-[0.2em] text-mute uppercase">Read more</span>
+                <div className="flex flex-1 flex-col p-8">
+                  <div className="flex items-center justify-between">
+                    <CategoryIcon slug={c.slug} size={20} className="text-gold" />
+                    <ArrowUpRight size={16} className="text-dim transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold" />
+                  </div>
+                  <h3 className="headline mt-6 text-xl text-ink transition-colors group-hover:text-gold">{c.label}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-mute">{c.description}</p>
+                  <div className="mt-6 flex items-baseline justify-between">
+                    <span className="label">{c.points ? c.size : 'The archive'}</span>
+                    <span className="text-[11px] font-medium tracking-[0.2em] text-mute uppercase">Read more</span>
+                  </div>
                 </div>
               </Link>
             ))}

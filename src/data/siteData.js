@@ -3,11 +3,16 @@ export const CHOIR_SHORT = 'AMC'
 export const CONTACT_EMAIL = 'admin@australianmalechoir.com.au'
 export const CONTACT_CITY = 'Sydney, Australia'
 
+const b = (p) => `${import.meta.env.BASE_URL}${p.replace(/^\//, '')}`
+
+const G = (n) => b(`/images/gallery/${n}.jpg`)
+
 export const EVENT_CATEGORIES = [
   {
     slug: 'concerts',
     label: 'Concerts (large-scale)',
     icon: 'mic',
+    image: G(60),
     description: 'Ticketed, public concerts — large-scale performances in concert halls and festivals across Australia and overseas.',
     size: 'Full chorus · 20–70 voices',
     points: [
@@ -21,6 +26,7 @@ export const EVENT_CATEGORIES = [
     slug: 'corporate',
     label: 'Corporate Events',
     icon: 'briefcase',
+    image: G(56),
     description: 'Award nights, conferences and galas. Uplifting music tailored to your event and audience.',
     size: 'Compact ensemble to full choir',
     points: [
@@ -34,6 +40,7 @@ export const EVENT_CATEGORIES = [
     slug: 'weddings',
     label: 'Weddings',
     icon: 'heart',
+    image: G(57),
     description: 'Ceremonies and receptions — from intimate ceremony sets to full receptions.',
     size: 'Octet to full ensemble · 8–50 voices',
     points: [
@@ -47,6 +54,7 @@ export const EVENT_CATEGORIES = [
     slug: 'private',
     label: 'Private Parties & Birthdays',
     icon: 'party',
+    image: G(55),
     description: 'Private performances for birthdays, milestone celebrations and special occasions.',
     size: 'Intimate octet · 8 voices',
     points: [
@@ -60,13 +68,10 @@ export const EVENT_CATEGORIES = [
     slug: 'past',
     label: 'Past Performances',
     icon: 'history',
+    image: G(64),
     description: 'A look back through recent seasons — concerts, galas, tours and community appearances from the AMC archive.',
   },
 ]
-
-const b = (p) => `${import.meta.env.BASE_URL}${p.replace(/^\//, '')}`
-
-const G = (n) => b(`/images/gallery/${n}.jpg`)
 
 export const eventsData = []
 
