@@ -27,7 +27,7 @@ export default function Navbar() {
       {/* announcement strip */}
       <Link
         to="/enquire"
-        className="group flex items-center justify-center gap-2 border-b border-line bg-bg-1 py-2 text-[10px] font-medium tracking-[0.28em] text-mute uppercase transition-colors hover:text-gold"
+        className="group flex items-center justify-center gap-2 border-b border-line bg-bg-1 py-2 text-[10px] font-medium tracking-[0.22em] text-mute uppercase transition-colors hover:text-gold sm:tracking-[0.28em]"
       >
         Book AMC for your next event
         <ArrowRight size={11} className="transition-transform group-hover:translate-x-0.5" />
@@ -67,7 +67,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen((o) => !o)}
-            className="-mr-2 inline-flex h-10 w-10 items-center justify-center text-ink lg:hidden"
+            className="-mr-2 inline-flex h-11 w-11 items-center justify-center text-ink lg:hidden"
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
           >

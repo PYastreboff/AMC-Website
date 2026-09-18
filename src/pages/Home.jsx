@@ -74,7 +74,7 @@ function Hero() {
 
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-5 pb-24 pt-44 text-center sm:px-8">
         <p className="label">Presenting the</p>
-        <h1 className="headline mt-5 text-5xl leading-[1.02] sm:text-7xl lg:text-8xl">
+        <h1 className="headline mt-5 text-4xl leading-[1.04] text-ink sm:text-6xl lg:text-7xl xl:text-8xl">
           Australian Male Choir
         </h1>
         <p className="mt-7 max-w-xl text-base leading-relaxed text-mute sm:text-lg">
