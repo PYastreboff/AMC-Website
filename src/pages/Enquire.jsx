@@ -3,8 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { ArrowUpRight, Check, Clock, Mail, MapPin } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import { Button } from '../components/Button'
-import { FacebookIcon, InstagramIcon, SpotifyIcon, YoutubeIcon } from '../components/SocialIcons'
-import { CONTACT_CITY, CONTACT_EMAIL, EVENT_CATEGORIES, socialLinks } from '../data/siteData'
+import { CONTACT_CITY, CONTACT_EMAIL, EVENT_CATEGORIES } from '../data/siteData'
 
 const notes = [
   { title: 'Response time', text: 'every enquiry within two business days' },
@@ -18,13 +17,6 @@ const contactRows = [
   { Icon: MapPin, title: 'Based in', value: CONTACT_CITY },
   { Icon: Clock, title: 'Office hours', value: 'Mon–Fri · 9am–5pm AEST' },
 ]
-
-const socialIcons = {
-  spotify: SpotifyIcon,
-  youtube: YoutubeIcon,
-  instagram: InstagramIcon,
-  facebook: FacebookIcon,
-}
 
 const BOOKABLE = new Set(['concerts', 'corporate', 'weddings', 'private'])
 const enquiryTypes = EVENT_CATEGORIES.filter((c) => BOOKABLE.has(c.slug))
@@ -114,27 +106,7 @@ export default function Enquire() {
                 </ul>
               </div>
 
-              <div className="mt-12">
-                <p className="label">Follow the choir</p>
-                <div className="mt-5 flex flex-wrap gap-x-7 gap-y-2">
-                  {socialLinks.map((s) => {
-                    const Icon = socialIcons[s.icon] || SpotifyIcon
-                    return (
-                      <a
-                        key={s.name}
-                        href={s.href}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        className="inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.2em] text-mute uppercase transition-colors hover:text-gold"
-                      >
-                        <Icon size={14} />
-                        {s.name} <ArrowUpRight size={11} />
-                      </a>
-                    )
-                  })}
-                </div>
-              </div>
-            </aside>
+              </aside>
 
             {/* Form */}
             <div className="lg:col-span-8">
@@ -196,10 +168,12 @@ export default function Enquire() {
                     <Field label="Approximate audience">
                       <select value={form.audienceSize} onChange={set('audienceSize')} className="field">
                         <option value="">Select…</option>
-                        <option>Under 50 guests</option>
-                        <option>50–150 guests</option>
-                        <option>150–500 guests</option>
-                        <option>500+ guests</option>
+                        <option>Up to 10</option>
+                        <option>Up to 50</option>
+                        <option>Up to 100</option>
+                        <option>Up to 500</option>
+                        <option>Up to 1,000</option>
+                        <option>Over 1,000</option>
                       </select>
                     </Field>
                     <div className="sm:col-span-2">

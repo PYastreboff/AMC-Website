@@ -1,22 +1,12 @@
 import { Link } from 'react-router-dom'
 import { Mail, MapPin } from 'lucide-react'
 import Logo from '../components/Logo'
-import { FacebookIcon, InstagramIcon, SpotifyIcon, YoutubeIcon } from '../components/SocialIcons'
 import { CONTACT_CITY, CONTACT_EMAIL } from '../data/siteData'
 
 const exploreLinks = [
   { label: 'About', to: '/about' },
   { label: 'Events We Perform', to: '/events' },
-  { label: 'Media', to: '/media' },
-  { label: 'News', to: '/news' },
   { label: 'Enquire / Book', to: '/enquire' },
-]
-
-const social = [
-  { label: 'Spotify', href: 'https://open.spotify.com', Icon: SpotifyIcon },
-  { label: 'YouTube', href: 'https://youtube.com', Icon: YoutubeIcon },
-  { label: 'Instagram', href: 'https://instagram.com', Icon: InstagramIcon },
-  { label: 'Facebook', href: 'https://facebook.com', Icon: FacebookIcon },
 ]
 
 export default function Footer() {
@@ -30,19 +20,8 @@ export default function Footer() {
               Professional male voices performing from harmonised Italian arias to jazz and pop —
               for concerts, corporate events, weddings and private occasions, at home and abroad.
             </p>
-            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-2">
-              {social.map(({ label, href, Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.2em] text-mute uppercase transition-colors hover:text-gold"
-                >
-                  <Icon size={14} />
-                  {label}
-                </a>
-              ))}
+            <div className="mt-7">
+              <Link to="/enquire" className="btn btn-gold">Enquire / Book AMC</Link>
             </div>
           </div>
 

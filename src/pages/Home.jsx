@@ -7,20 +7,12 @@ import { Button } from '../components/Button'
 import { EVENT_CATEGORIES, repertoireGenres } from '../data/siteData'
 import { CategoryIcon } from '../components/CategoryIcons'
 import { b } from '../lib/base'
-import { FacebookIcon, InstagramIcon, SpotifyIcon, YoutubeIcon } from '../components/SocialIcons'
 
 const facts = [
   { value: '50+', label: 'Professional singers on call' },
   { value: '200+', label: 'Performances delivered' },
   { value: '18', label: 'Countries performed in' },
   { value: '4', label: 'Voice sections, tenor to bass' },
-]
-
-const socials = [
-  { name: 'Spotify', Icon: SpotifyIcon, href: 'https://open.spotify.com' },
-  { name: 'YouTube', Icon: YoutubeIcon, href: 'https://youtube.com' },
-  { name: 'Instagram', Icon: InstagramIcon, href: 'https://instagram.com' },
-  { name: 'Facebook', Icon: FacebookIcon, href: 'https://facebook.com' },
 ]
 
 export default function Home() {
@@ -31,7 +23,6 @@ export default function Home() {
       <WhyBook />
       <RepertoireBand />
       <FactsBand />
-      <LatestBand />
       <CTABand />
     </>
   )
@@ -85,21 +76,6 @@ function Hero() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Button to="/enquire" className="w-auto">Enquire / Book AMC</Button>
           <Button to="/events" variant="line" className="w-auto">Explore performances</Button>
-        </div>
-
-        <div className="mt-12 flex items-center gap-6">
-          {socials.map(({ name, Icon, href }) => (
-            <a
-              key={name}
-              href={href}
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label={name}
-              className="text-dim transition-colors hover:text-gold"
-            >
-              <Icon size={17} />
-            </a>
-          ))}
         </div>
       </div>
 
@@ -200,8 +176,8 @@ function RepertoireBand() {
               title="Genres & repertoire"
               sub="Six signature genres, curated per audience and occasion. Each programme is rehearsed specially for your event."
             />
-            <Button to="/about/repertoire" variant="line" className="mt-10 w-auto">
-              Explore the repertoire
+            <Button to="/enquire" variant="line" className="mt-10 w-auto">
+              Enquire about our repertoire
             </Button>
           </div>
 
@@ -238,37 +214,6 @@ function FactsBand() {
   )
 }
 
-function LatestBand() {
-  const shots = [b('/images/gallery/54.jpg'), b('/images/gallery/58.jpg'), b('/images/gallery/62.jpg')]
-  return (
-    <section className="bg-bg py-24 sm:py-32">
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-        <div className="flex items-end justify-between gap-6">
-          <SectionHeading
-            title="The choir on stage"
-            sub="Performance dates are announced soon — until then, a glimpse of the sound and spirit of the choir."
-            center={false}
-            rule={false}
-          />
-          <Link to="/media" className="link-arrow hidden shrink-0 sm:inline-flex">
-            Watch &amp; listen <ArrowRight size={13} />
-          </Link>
-        </div>
-
-        <div className="mt-14 grid gap-x-10 gap-y-14 sm:grid-cols-3">
-          {shots.map((src) => (
-            <ArtPlaceholder key={src} image={src} className="aspect-[4/3]" />
-          ))}
-        </div>
-
-        <p className="mt-12 text-center text-sm text-mute">
-          No performances announced yet.
-        </p>
-      </div>
-    </section>
-  )
-}
-
 function CTABand() {
   return (
     <section className="bg-bg-1 py-24 text-center sm:py-36">
@@ -283,7 +228,6 @@ function CTABand() {
         </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Button to="/enquire" className="w-auto px-10 py-4">Enquire now</Button>
-          <Button to="/media" variant="line" className="w-auto px-10 py-4">Watch &amp; listen</Button>
         </div>
       </div>
     </section>

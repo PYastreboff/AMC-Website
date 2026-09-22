@@ -351,9 +351,6 @@ export default function Media() {
               <p className="label flex items-center gap-2">Video <Video size={13} className="text-gold" /></p>
               <h2 className="headline mt-4 text-2xl sm:text-3xl">In performance</h2>
             </div>
-            <Button href="https://www.youtube.com/@russianorthodoxmalechoirof9959" target="_blank" rel="noreferrer noopener" variant="ghost" className="w-auto">
-              Visit our YouTube ↗
-            </Button>
           </div>
 
           <div className="mt-14 grid gap-x-10 gap-y-14 lg:grid-cols-3">

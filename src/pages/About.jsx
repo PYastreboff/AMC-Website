@@ -63,11 +63,8 @@ export default function About() {
 
       <section className="py-24 text-center sm:py-32">
         <div className="mx-auto w-full max-w-2xl px-5 sm:px-8">
-          <p className="headline text-2xl sm:text-3xl">Hear the choir before you book.</p>
+          <p className="headline text-2xl sm:text-3xl">Plan a performance before you book.</p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button to="/media" variant="line" className="w-auto">
-              Watch &amp; listen
-            </Button>
             <Button to="/enquire" className="w-auto">
               Make an enquiry
             </Button>

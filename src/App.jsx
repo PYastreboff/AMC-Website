@@ -8,10 +8,7 @@ import OurStory from './pages/OurStory'
 import Repertoire from './pages/Repertoire'
 import Events from './pages/Events'
 import EventType from './pages/EventType'
-import Media from './pages/Media'
 import Enquire from './pages/Enquire'
-import News from './pages/News'
-import NewsArticle from './pages/NewsArticle'
 import NotFound from './pages/NotFound'
 import Legal from './pages/Legal'
 
@@ -37,11 +34,8 @@ export default function App() {
             <Route path="/about/repertoire" element={<Repertoire />} />
             <Route path="/events" element={<Events />} />
             <Route path="/events/:slug" element={<EventType />} />
-            <Route path="/media" element={<Media />} />
             <Route path="/enquire" element={<Enquire />} />
             <Route path="/contact" element={<Navigate to="/enquire" replace />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/news/:slug" element={<NewsArticle />} />
             <Route path="/privacy" element={<Legal section="privacy" />} />
             <Route path="/terms" element={<Legal section="terms" />} />
             <Route path="*" element={<NotFound />} />

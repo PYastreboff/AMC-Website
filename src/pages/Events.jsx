@@ -115,19 +115,6 @@ export default function Events() {
           </div>
         </div>
       </section>
-
-      <section className="bg-bg-1 py-20 text-center sm:py-24">
-        <div className="mx-auto w-full max-w-2xl px-5 sm:px-8">
-          <CategoryIcon slug="past" size={20} className="mx-auto text-gold" />
-          <p className="headline mt-6 text-2xl sm:text-3xl">Curious what a performance looks like?</p>
-          <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-mute">
-            Browse the archive of recent seasons — concerts, galas, tours and community appearances.
-          </p>
-          <Button to="/events/past" variant="line" className="mt-8 w-auto">
-            See past performances
-          </Button>
-        </div>
-      </section>
     </>
   )
 }

@@ -1,11 +1,10 @@
-import { Link, useParams } from 'react-router-dom'
-import { ArrowUpRight, Calendar, MapPin } from 'lucide-react'
+import { useParams } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
 import ArtPlaceholder from '../components/ArtPlaceholder'
 import { b } from '../lib/base'
 import { Button } from '../components/Button'
-import { EVENT_CATEGORIES, eventsData } from '../data/siteData'
+import { EVENT_CATEGORIES } from '../data/siteData'
 
 const bookable = new Set(['concerts', 'corporate', 'weddings', 'private'])
 
@@ -30,7 +29,6 @@ export default function EventType() {
   }
 
   const isBookable = bookable.has(cat.slug)
-  const catalogue = eventsData.filter((e) => e.category === cat.slug)
 
   return (
     <>
@@ -42,10 +40,7 @@ export default function EventType() {
 
       <section className="py-16 sm:py-24">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-          <ArtPlaceholder
-            image={catalogue[0]?.image || b('/images/gallery/1.jpg')}
-            className="aspect-[21/9]"
-          />
+          <ArtPlaceholder image={b('/images/gallery/1.jpg')} className="aspect-[21/9]" />
         </div>
       </section>
 
@@ -85,54 +80,10 @@ export default function EventType() {
         </section>
       )}
 
-      <section className="py-16 sm:py-24">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-          <p className="label">
-            {isBookable ? 'Sample performances' : 'Recent seasons'}
-          </p>
-          <div className="mt-8">
-            {catalogue.length > 0 ? (
-              catalogue.map((e) => (
-                <article
-                  key={e.id}
-                  className="grid grid-cols-1 gap-6 border-b border-line py-8 sm:grid-cols-12 sm:items-center"
-                >
-                  <div className="sm:col-span-3">
-                    <ArtPlaceholder image={e.image} className="aspect-[4/3]" />
-                  </div>
-                  <div className="sm:col-span-7">
-                    <h2 className="headline text-xl text-ink sm:text-2xl">{e.title}</h2>
-                    <p className="mt-3 max-w-xl text-sm leading-relaxed text-mute">{e.description}</p>
-                    <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-1 text-[11px] tracking-[0.18em] text-dim uppercase">
-                      <span className="inline-flex items-center gap-2"><Calendar size={13} className="text-gold" />{e.date}</span>
-                      <span className="inline-flex items-center gap-2"><MapPin size={13} className="text-gold" />{e.location}</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-5 sm:col-span-2 sm:flex-col sm:items-end sm:gap-3">
-                    {isBookable ? (
-                      <Link to={`/enquire?category=${cat.slug}`} className="btn btn-line w-auto px-5 py-2.5">
-                        Enquire
-                      </Link>
-                    ) : (
-                      <span className="text-[11px] font-medium tracking-[0.22em] text-mute uppercase">Archived</span>
-                    )}
-                    <span className="hidden items-end text-dim sm:inline-flex">
-                      <ArrowUpRight size={18} />
-                    </span>
-                  </div>
-                </article>
-              ))
-            ) : (
-              <p className="py-10 text-sm text-mute">Nothing here yet — check back soon.</p>
-            )}
-          </div>
-        </div>
-      </section>
-
       <section className="bg-bg-1 py-20 text-center sm:py-24">
         <div className="mx-auto w-full max-w-2xl px-5 sm:px-8">
           <p className="headline text-2xl sm:text-3xl">
-            {isBookable ? `Planning a ${cat.label.toLowerCase()}?` : 'Have his next performance in mind?'}
+            {isBookable ? 'Planning a similar occasion?' : 'Have another performance in mind?'}
           </p>
           <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-mute">
             {isBookable
