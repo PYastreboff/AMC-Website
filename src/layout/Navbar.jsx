@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { ArrowRight, Menu, X } from 'lucide-react'
-import Logo from '../components/Logo'
+import { b } from '../lib/base'
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -37,7 +37,11 @@ export default function Navbar() {
       >
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
           <Link to="/" aria-label="Australian Male Choir — home" onClick={close}>
-            <Logo compact />
+            <img
+              src={b('/amc-logo.png')}
+              alt="Australian Male Choir"
+              className="h-12 w-auto"
+            />
           </Link>
 
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
