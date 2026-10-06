@@ -28,38 +28,35 @@ export default function Home() {
   )
 }
 
-const heroShots = [b('/images/gallery/2.jpg'), b('/images/gallery/40.jpg'), b('/images/gallery/59.jpg'), b('/images/gallery/61.jpg')]
+const heroClips = [
+  b('/videos/hero/hero-1.mp4'),
+  b('/videos/hero/hero-2.mp4'),
+  b('/videos/hero/hero-3.mp4'),
+  b('/videos/hero/hero-4.mp4'),
+  b('/videos/hero/hero-5.mp4'),
+]
 
 function Hero() {
   const [slide, setSlide] = useState(0)
-  const [zoomed, setZoomed] = useState(false)
 
   useEffect(() => {
-    const t = setTimeout(() => setZoomed(true), 100)
-    return () => clearTimeout(t)
-  }, [])
-
-  useEffect(() => {
-    const t = setInterval(() => setSlide((s) => (s + 1) % heroShots.length), 6000)
+    const t = setInterval(() => setSlide((s) => (s + 1) % heroClips.length), 4000)
     return () => clearInterval(t)
   }, [])
 
   return (
     <section className="relative flex min-h-screen flex-col">
-      {/* muted fading backdrop */}
+      {/* muted background video */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        {heroShots.map((src, i) => (
-          <div
-            key={src}
-            className={`absolute inset-0 transition-opacity duration-1000 ${i === slide ? 'opacity-100' : 'opacity-0'}`}
-          >
-            <div
-              className={`h-full w-full transition-transform ease-linear duration-[6000ms] ${i === slide && zoomed ? 'scale-110' : 'scale-100'}`}
-            >
-              <ArtPlaceholder image={src} className="h-full aspect-auto" bordered={false} />
-            </div>
-          </div>
-        ))}
+        <video
+          key={slide}
+          src={heroClips[slide]}
+          className="hero-fade h-full w-full object-cover"
+          autoPlay
+          muted
+          playsInline
+          preload="auto"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-bg/85 via-bg/70 to-bg" />
       </div>
 
