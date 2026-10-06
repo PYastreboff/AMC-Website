@@ -29,11 +29,11 @@ export default function Home() {
 }
 
 const heroClips = [
-  b('/videos/hero/hero-1.mp4'),
   b('/videos/hero/hero-2.mp4'),
   b('/videos/hero/hero-3.mp4'),
   b('/videos/hero/hero-4.mp4'),
   b('/videos/hero/hero-5.mp4'),
+  b('/videos/hero/hero-1.mp4'),
 ]
 
 function Hero() {
