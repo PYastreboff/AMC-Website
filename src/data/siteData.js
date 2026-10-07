@@ -12,7 +12,7 @@ export const EVENT_CATEGORIES = [
     slug: 'concerts',
     label: 'Concerts (large-scale)',
     icon: 'mic',
-    image: G(60),
+    image: b('/images/concerts.jpg'),
     description: 'Ticketed, public concerts — large-scale performances in concert halls and festivals, with orchestras or electronic production, across Australia and overseas.',
     size: 'Full chorus · 20–70 voices',
     points: [
@@ -28,7 +28,7 @@ export const EVENT_CATEGORIES = [
     slug: 'corporate',
     label: 'Corporate Events',
     icon: 'briefcase',
-    image: G(56),
+    image: b('/images/corporate.jpg'),
     description: 'Award nights, conferences, galas and sporting functions. Uplifting music tailored to your event and audience.',
     size: 'Compact ensemble to full choir',
     points: [
@@ -43,7 +43,7 @@ export const EVENT_CATEGORIES = [
     slug: 'weddings',
     label: 'Weddings, Proposals & Engagement Parties',
     icon: 'heart',
-    image: G(57),
+    image: b('/images/weddings.jpg'),
     description: 'Ceremonies, receptions, proposals and engagement parties — from intimate ceremony sets to full receptions.',
     size: 'Octet to full ensemble · 8–50 voices',
     points: [
@@ -58,7 +58,7 @@ export const EVENT_CATEGORIES = [
     slug: 'private',
     label: 'Private Parties & Birthdays',
     icon: 'party',
-    image: G(55),
+    image: b('/images/private.jpg'),
     description: 'Private performances for birthdays, milestone celebrations and special occasions.',
     size: 'Intimate octet · 8 voices',
     points: [

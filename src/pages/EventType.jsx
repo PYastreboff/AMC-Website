@@ -40,7 +40,7 @@ export default function EventType() {
 
       <section className="py-16 sm:py-24">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-          <ArtPlaceholder image={b('/images/gallery/1.jpg')} className="aspect-[21/9]" />
+          <ArtPlaceholder image={cat.image || b('/images/gallery/1.jpg')} className="aspect-[21/9]" />
         </div>
       </section>
 

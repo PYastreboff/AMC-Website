@@ -1,6 +1,7 @@
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
 import ArtPlaceholder from '../components/ArtPlaceholder'
+import { b } from '../lib/base'
 
 const timeline = [
   { n: '01', title: 'The founding voices', text: 'A gathering of Australian male singers bound by one belief: that blended male voices are among music’s most powerful instruments.' },
@@ -28,7 +29,7 @@ export default function OurStory() {
 
       <section className="py-16 sm:py-24">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-          <ArtPlaceholder image="/images/about-hero.jpg" className="aspect-[21/9]" />
+          <ArtPlaceholder image={b("/images/our-story.jpg")} className="aspect-[21/9]" />
         </div>
       </section>
 
