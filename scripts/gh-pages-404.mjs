@@ -1,6 +1,6 @@
 // GitHub Pages serves static files only — it can't rewrite unknown paths to
-// index.html the way vercel.json does, so BrowserRouter deep links (/events,
-// /enquire?category=weddings, …) would 404.
+// index.html, so BrowserRouter deep links (/events, /enquire?category=weddings,
+// …) would 404.
 //
 // This script generates dist/404.html from the built index.html. GitHub Pages
 // serves it for any unknown path; it stores the intended location in

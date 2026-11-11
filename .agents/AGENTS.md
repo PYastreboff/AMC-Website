@@ -20,7 +20,7 @@ categories Concerts (large-scale), Corporate Events, Weddings, Private Parties &
 
 - **React 19 + Vite 8** — static SPA (`npm run dev`, `npm run build` → `dist/`)
 - **Tailwind CSS v4** via `@tailwindcss/vite` (no `tailwind.config.js`; tokens live in `src/index.css`)
-- **React Router v7** — `BrowserRouter`, SPA routing (rewrites in `public/_redirects` and `vercel.json`)
+- **React Router v7** — `BrowserRouter`, SPA routing (GitHub Pages 404 bounce: `scripts/gh-pages-404.mjs` + restore script in `index.html`)
 - **lucide-react** for UI icons; brand/social icons are inline SVGs (`src/components/SocialIcons.jsx`)
 - **oxlint** via `npm run lint`
 
@@ -115,15 +115,23 @@ element before anything new plays.
 which feed the `/events/:slug` pages. `past` is the archive (no `points`). Enquire’s dropdown lists the four
 bookable categories only.
 
-## Enquiry form & Netlify
+## Enquiry form & Formspree
 
 `/enquire` is the only conversion target and the hub for contact details (email/phone/city/office hours/socials).
 
-- Form posts to **Netlify Forms** (`name="enquiry"`, `data-netlify`, honeypot, hidden `form-name`).
-- A hidden duplicate detector form lives in `index.html` so Netlify detects it at build time.
-- On `import.meta.env.DEV` the submit short-circuits to the success screen (no POST) so localhost never errors.
+- Form posts to **Formspree** (AJAX `POST https://formspree.io/f/<id>`); the form ID comes from the
+  `VITE_FORMSPREE_ID` repository variable injected at build time.
+- `_gotcha` is the honeypot field — Formspree silently drops submissions where it's filled.
+- On `import.meta.env.DEV` the submit short-circuits to the success screen (no POST) so localhost never
+  burns submissions.
 - Deep-links `/enquire?category=<slug>` preset the dropdown (bookable slugs only).
-- Email notification (to `zowzow811@gmail.com`) is configured in the Netlify dashboard, not in this repo.
+- Notifications go to `admin@australianmalechoir.com.au`; the free plan allows 50 submissions/month.
+
+## Hosting
+
+The site is published from `gh-pages-formspree` to **GitHub Pages** by
+`.github/workflows/deploy.yml` (install → `vite build` → `scripts/gh-pages-404.mjs` → publish `dist/`).
+The custom domain is `australianmalechoir.com.au`. There is no server runtime — no API functions.
 
 ## Imagery
 
@@ -143,4 +151,4 @@ its muted placeholder — caption text only shows in true placeholder mode.
 
 - Social links in `siteData.js` point to platform homepages — real AMC profiles needed.
 - Privacy/Terms copy in `src/pages/Legal.jsx` is generic placeholder text.
-- Netlify form email notification must be created in the dashboard.
+- Formspree: the account must be verified and the form's notification address confirmed in the dashboard.

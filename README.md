@@ -62,9 +62,8 @@ The events data already carries an `image` field for this purpose.
 ## GitHub Pages deployment (this branch)
 
 This branch (`gh-pages-formspree`) deploys the site to **GitHub Pages**, with
-the contact form powered
-by **Formspree** — Pages is static-only, so the Vercel function (`api/enquiry.js`)
-used on `main` can't come along, and `api/` + `vercel.json` are unused here.
+the contact form powered by **Formspree** — Pages is static-only, so there is no
+server runtime (no API functions).
 
 ### One-time setup
 

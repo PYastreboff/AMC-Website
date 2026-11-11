@@ -21,9 +21,9 @@ const contactRows = [
 const BOOKABLE = new Set(['concerts', 'corporate', 'weddings', 'private'])
 const enquiryTypes = EVENT_CATEGORIES.filter((c) => BOOKABLE.has(c.slug))
 
-// GitHub Pages is static-only, so the enquiry form submits to Formspree
-// instead of the Vercel function used on main. Create the form at
-// https://formspree.io and set VITE_FORMSPREE_ID (see README on this branch).
+// GitHub Pages is static-only, so the enquiry form submits to Formspree.
+// Create the form at https://formspree.io and set VITE_FORMSPREE_ID
+// (see README).
 const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || 'FORMSPREE_FORM_ID'
 const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_ID}`
 
