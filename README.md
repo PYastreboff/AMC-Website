@@ -57,10 +57,41 @@ The events data already carries an `image` field for this purpose.
 
 ## Notes
 
-- The `/enquire` form posts to **Netlify Forms** (`name="enquiry"`). A
-  hidden detector form lives in `index.html` so Netlify detects it at build
-  time. Enable "Form notifications" in the Netlify dashboard to receive
-  submissions by email (or use a Zapier/process-webhook integration).
-  On non-Netlify hosts the POST returns the page (`200`), so success shows
-  locally; the fetch URL can be changed in `src/pages/Enquire.jsx`.
 - Social links in `siteData.js` point to platform homepages — update with real AMC profiles.
+
+## GitHub Pages deployment (this branch)
+
+This branch (`gh-pages-formspree`) deploys the site to **GitHub Pages**, with
+the contact form powered
+by **Formspree** — Pages is static-only, so the Vercel function (`api/enquiry.js`)
+used on `main` can't come along, and `api/` + `vercel.json` are unused here.
+
+### One-time setup
+
+1. **Formspree** — create a form at https://formspree.io, then add a repository
+   variable `VITE_FORMSPREE_ID` (Settings → Secrets and variables → Actions →
+   Variables) with the form ID (the `xxxxxxxx` in `https://formspree.io/f/xxxxxxxx`).
+   Submissions arrive by email; the free plan allows 50/month. A confirmation
+   auto-reply to the visitor needs Formspree's paid tier — the on-page
+   "Enquiry received" message covers the basics for free.
+2. **Pages** — Settings → Pages → Build and deployment → Source:
+   **GitHub Actions**.
+3. **Custom domain** — Settings → Pages → Custom domain, then point DNS at
+   GitHub Pages (`A` records for `185.199.108–111.153` and a `CNAME` for
+   `www` → `PYastreboff.github.io`). Once the DNS check passes, enable
+   **Enforce HTTPS**.
+
+### How it works
+
+- Pushing to `gh-pages-formspree` runs `.github/workflows/deploy.yml`: install →
+  `vite build` (with `VITE_FORMSPREE_ID` injected) → `scripts/gh-pages-404.mjs`
+  → publish `dist/`.
+- Pages can't rewrite unknown paths to `index.html`, so deep links would 404.
+  The build emits a `dist/404.html` that saves the intended path and bounces to
+  `/`; a small script in `index.html` restores the URL before React Router
+  boots. This assumes the site sits at the root of the custom domain
+  (`base: '/'` — the default).
+- The form in `src/pages/Enquire.jsx` POSTs to Formspree via AJAX. The hidden
+  field is named `_gotcha`, Formspree's honeypot convention — Formspree
+  silently drops submissions where it's filled. In `npm run dev` the form is
+  never posted (to avoid burning Formspree submissions).

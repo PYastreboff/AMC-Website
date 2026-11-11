@@ -21,6 +21,12 @@ const contactRows = [
 const BOOKABLE = new Set(['concerts', 'corporate', 'weddings', 'private'])
 const enquiryTypes = EVENT_CATEGORIES.filter((c) => BOOKABLE.has(c.slug))
 
+// GitHub Pages is static-only, so the enquiry form submits to Formspree
+// instead of the Vercel function used on main. Create the form at
+// https://formspree.io and set VITE_FORMSPREE_ID (see README on this branch).
+const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || 'FORMSPREE_FORM_ID'
+const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_ID}`
+
 export default function Enquire() {
   const [searchParams] = useSearchParams()
   const preset = searchParams.get('category')
@@ -43,22 +49,20 @@ export default function Enquire() {
   const submit = async (e) => {
     e.preventDefault()
     setError('')
+    const data = new FormData(e.currentTarget)
     if (import.meta.env.DEV) {
       console.info('Dev mode: form not posted — submissions are delivered in production.')
       setSent(true)
       return
     }
     try {
-      const botField = new FormData(e.currentTarget).get('bot-field') || ''
-      const res = await fetch('/api/enquiry', {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, bot_field: botField }),
+        headers: { Accept: 'application/json' },
+        body: data,
       })
       if (!res.ok) {
-        const data = await res.json().catch(() => null)
-        const detail = data && data.error ? `: ${data.error}` : ''
-        throw new Error(`Submission failed${detail} (${res.status})`)
+        throw new Error(`Formspree submission failed (${res.status})`)
       }
       setSent(true)
     } catch (err) {
@@ -126,20 +130,21 @@ export default function Enquire() {
                 <form onSubmit={submit} name="enquiry">
                   <p className="hidden" aria-hidden="true">
                     <label>
-                      Don’t fill this out if you’re human: <input name="bot-field" tabIndex={-1} autoComplete="off" />
+                      Don’t fill this out if you’re human: <input name="_gotcha" tabIndex={-1} autoComplete="off" />
                     </label>
                   </p>
                   <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
                     <Field label="Full name" required>
-                      <input required value={form.name} onChange={set('name')} placeholder="Jane Citizen" className="field" />
+                      <input required name="full name" value={form.name} onChange={set('name')} placeholder="Jane Citizen" className="field" />
                     </Field>
                     <Field label="Email" required>
-                      <input required type="email" value={form.email} onChange={set('email')} placeholder="you@email.com" className="field" />
+                      <input required type="email" name="email" value={form.email} onChange={set('email')} placeholder="you@email.com" className="field" />
                     </Field>
                     <Field label="Phone">
                       <input
                         type="tel"
                         inputMode="tel"
+                        name="phone"
                         value={form.phone}
                         onChange={set('phone')}
                         placeholder="+61 4 000 000 000"
@@ -149,10 +154,10 @@ export default function Enquire() {
                       />
                     </Field>
                     <Field label="Organisation">
-                      <input value={form.organisation} onChange={set('organisation')} placeholder="Company, venue or family" className="field" />
+                      <input name="organisation" value={form.organisation} onChange={set('organisation')} placeholder="Company, venue or family" className="field" />
                     </Field>
 <Field label="Type of enquiry" required>
-                <select required value={form.eventType} onChange={set('eventType')} className="field">
+                <select required name="type of enquiry" value={form.eventType} onChange={set('eventType')} className="field">
                   <option value="general">General enquiry</option>
                   {enquiryTypes.map((c) => (
                     <option key={c.slug} value={c.slug}>{c.label}</option>
@@ -160,13 +165,13 @@ export default function Enquire() {
                 </select>
               </Field>
                     <Field label="Preferred date">
-                      <input type="date" value={form.date} onChange={set('date')} className="field [color-scheme:dark]" />
+                      <input type="date" name="preferred date" value={form.date} onChange={set('date')} className="field [color-scheme:dark]" />
                     </Field>
                     <Field label="Event city / location" required>
-                      <input required value={form.city} onChange={set('city')} placeholder="Sydney, Melbourne, regional…" className="field" />
+                      <input required name="event city" value={form.city} onChange={set('city')} placeholder="Sydney, Melbourne, regional…" className="field" />
                     </Field>
                     <Field label="Approximate audience">
-                      <select value={form.audienceSize} onChange={set('audienceSize')} className="field">
+                      <select name="audience" value={form.audienceSize} onChange={set('audienceSize')} className="field">
                         <option value="">Select…</option>
                         <option>Up to 10</option>
                         <option>Up to 50</option>
@@ -180,6 +185,7 @@ export default function Enquire() {
                       <Field label="About your event" required>
                         <textarea
                           required
+                          name="message"
                           value={form.message}
                           onChange={set('message')}
                           rows={5}
