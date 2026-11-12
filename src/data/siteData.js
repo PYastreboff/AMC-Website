@@ -1,3 +1,5 @@
+import { ghVideo } from '../lib/base'
+
 export const CHOIR_NAME = 'Australian Male Choir'
 export const CHOIR_SHORT = 'AMC'
 export const CONTACT_EMAIL = 'admin@australianmalechoir.com.au'
@@ -171,9 +173,9 @@ export const mediaItems = [
 ]
 
 export const videoItems = [
-  { id: 1, title: 'Australian National Anthem · Advance Australia Fair', duration: '1:12', image: b('/images/poster-1.jpg'), src: b('/videos/video-1.mp4') },
-  { id: 2, title: 'Bella Ciao', duration: '2:16', image: b('/images/poster-2.jpg'), src: b('/videos/video-2.mp4') },
-  { id: 3, title: 'Those Were The Days, My Friend', duration: '3:51', image: b('/images/poster-3.jpg'), src: b('/videos/video-3.mp4') },
+  { id: 1, title: 'Australian National Anthem · Advance Australia Fair', duration: '1:12', image: b('/images/poster-1.jpg'), src: ghVideo('video-1.mp4') },
+  { id: 2, title: 'Bella Ciao', duration: '2:16', image: b('/images/poster-2.jpg'), src: ghVideo('video-2.mp4') },
+  { id: 3, title: 'Those Were The Days, My Friend', duration: '3:51', image: b('/images/poster-3.jpg'), src: ghVideo('video-3.mp4') },
 ]
 
 export const audioItems = [

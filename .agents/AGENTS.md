@@ -103,7 +103,9 @@ no content CMS. Key exports: `EVENT_CATEGORIES`, `eventsData`, `repertoireGenres
 `mediaItems`, `videoItems`, `audioItems`, `socialLinks`, plus contact constants `CONTACT_EMAIL`,
 `CONTACT_PHONE`, `CONTACT_CITY`. `audioItems` carries a `src`; files live in `public/audio/` and are played
 inline on `/media` (a track renders "Recording coming soon" until its file exists). `videoItems` carry a `src`
-plus `image` poster; drop files at `public/videos/video-N.mp4` (matched 1:1 by id). `/media` has a custom
+plus `image` poster; the large videos live on `main` under `public/videos/` and are referenced with `ghVideo()`
+from `src/lib/base.js` (raw GitHub URLs) so this branch's deploy artifact stays under Pages' 25 MiB per-file
+limit. Drop new hero clips at `public/videos/hero/hero-N.mp4`. `/media` has a custom
 player for both — gold ring play/pause, hairline seek bar, `elapsed · total` readout, mute + fullscreen for
 video. Media playback is exclusive: a shared `mediaRefs` registry in `Media.jsx` pauses every other audio/video
 element before anything new plays.

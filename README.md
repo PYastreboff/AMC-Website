@@ -55,6 +55,14 @@ each page (or set image URLs in `siteData.js`).
 Place real images in `public/images/` and reference them as `/images/your-file.jpg`.
 The events data already carries an `image` field for this purpose.
 
+## Placing videos
+
+The three `/media` videos are not stored on this deploy branch — each is linked
+from the copy in the repo on `main` via `ghVideo()` in `src/lib/base.js`
+(`raw.githubusercontent.com/PYastreboff/AMC-Website/main/public/videos/…`).
+Keep those files on `main` when replacing a video. This keeps every deployed
+file under Pages' 25 MiB limit; the small hero clips stay in `public/videos/hero/`.
+
 ## Notes
 
 - Social links in `siteData.js` point to platform homepages — update with real AMC profiles.
