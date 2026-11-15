@@ -1,0 +1,12 @@
+# Cloudflare Pages custom response headers.
+# Vite copies this to the build output root on deploy.
+
+# Fingerprinted build assets (content-hashed filenames) never change — cache forever.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Local media (hero clips). Filenames are NOT hashed, so use a moderate TTL
+# rather than immutable; bump/rename the file (or purge) if a clip is replaced.
+# The three large /media videos are served from raw.githubusercontent.com.
+/videos/*
+  Cache-Control: public, max-age=604800
