@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowRight, ArrowUpRight, Compass } from 'lucide-react'
 import ArtPlaceholder from '../components/ArtPlaceholder'
 import SectionHeading from '../components/SectionHeading'
@@ -38,19 +38,34 @@ const heroClips = [
 
 function Hero() {
   const [slide, setSlide] = useState(0)
+  const videoRef = useRef(null)
 
   useEffect(() => {
     const t = setInterval(() => setSlide((s) => (s + 1) % heroClips.length), 4000)
     return () => clearInterval(t)
   }, [])
 
+  // Swap the clip on one persistent <video> rather than remounting it.
+  // The old `key={slide}` remounted the element every 4s, which made the
+  // browser re-download the full clip on every slide change.
+  useEffect(() => {
+    const el = videoRef.current
+    if (!el) return
+    el.src = heroClips[slide]
+    el.load()
+    el.play().catch(() => {})
+    // restart the fade-in animation for the new clip
+    el.classList.remove('hero-fade')
+    void el.offsetWidth
+    el.classList.add('hero-fade')
+  }, [slide])
+
   return (
     <section className="relative flex min-h-screen flex-col">
       {/* muted background video */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <video
-          key={slide}
-          src={heroClips[slide]}
+          ref={videoRef}
           className="hero-fade h-full w-full object-cover"
           autoPlay
           muted

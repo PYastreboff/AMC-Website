@@ -20,7 +20,7 @@ categories Concerts (large-scale), Corporate Events, Weddings, Private Parties &
 
 - **React 19 + Vite 8** — static SPA (`npm run dev`, `npm run build` → `dist/`)
 - **Tailwind CSS v4** via `@tailwindcss/vite` (no `tailwind.config.js`; tokens live in `src/index.css`)
-- **React Router v7** — `BrowserRouter`, SPA routing (rewrites in `public/_redirects` and `vercel.json`)
+- **React Router v7** — `BrowserRouter`, SPA routing (rewrites in `public/_redirects`; cache headers in `public/_headers` — Cloudflare Pages)
 - **lucide-react** for UI icons; brand/social icons are inline SVGs (`src/components/SocialIcons.jsx`)
 - **oxlint** via `npm run lint`
 
